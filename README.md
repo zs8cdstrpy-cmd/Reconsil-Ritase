@@ -1,46 +1,67 @@
-# Catatan Ritase (v32)
+# Reconcil Ritase (Catatan Ritase)
 
+Aplikasi PWA offline untuk **catatan ritase harian dump truck**, rekap KM, dan **perkiraan gaji** (sesuai pola slip CKB / Weda Bay).
 
-Aplikasi web untuk mencatat ritase harian dump truck: jarak loading ke dumping dihitung otomatis, ada rekap per loading dan dumping (termasuk BD di jalan), tambah lokasi sendiri, dan perkiraan gaji. Bisa dipakai tanpa sinyal setelah dibuka sekali.
+**Versi aplikasi:** v63  
+**Service worker:** `ritase-v63`
 
-## Pasang di HP
-1. Buka alamat GitHub Pages repository ini di Safari (iPhone) atau Chrome (Android) saat ada sinyal.
-2. iPhone: ketuk Bagikan, lalu Tambahkan ke Layar Utama. Android: menu Chrome, lalu Instal aplikasi atau Tambahkan ke layar utama.
-3. Buka dari ikon di layar utama. Setelah itu aplikasi jalan tanpa sinyal.
+Live: https://zs8cdstrpy-cmd.github.io/Reconsil-Ritase/
 
-## Periode buku
-Buka buku tanggal 29 dan tutup buku tanggal 28 (bisa diubah di tab Gaji). Tiap periode punya catatan, rekap, dan hitungan gaji sendiri. Daftar periode tiap bulan sudah tersedia, mulai September – Oktober 2026, dan tinggal dipilih. Ketuk Tutup buku untuk mengunci catatan periode, dan Periode berikutnya untuk pindah ke periode selanjutnya.
+---
+
+## Isi paket
+
+| File | Keterangan |
+|------|------------|
+| `index.html` | Aplikasi lengkap |
+| `sw.js` | Service worker offline + update cache |
+| `manifest.json` | PWA (Add to Home Screen) |
+| `icon-192.png` / `icon-512.png` / `apple-touch-icon.png` | Ikon app |
+| `README.md` | Dokumentasi ini |
+
+---
+
+## Fitur utama
+
+### Catat ritase
+- 3 slot per hari, shift DS / NS / OFF
+- Loading & dumping + BD di jalan / lanjutan BD
+- **Jarak patokan terkunci:** loading biasa → POS12 **43 km** · FENI **55 km** · Parkiran KR **30 km** (TOS6 PP & Parkiran KR khusus)
+- Foto bukti timesheet (kamera / galeri), simpan IndexedDB
+- Autosave ke perangkat
+
+### Periode buku
+- Buka **tanggal 29** · tutup **tanggal 28**
+- **Tutup buku otomatis** jika hari ini sudah lewat tanggal tutup
+- Tetap bisa **Buka kembali**
+- Cadangan JSON otomatis (opsional) saat tutup buku / update app
+
+### Gaji & slip
+- Gaji pokok, insentif, **Daily allowance default Rp 900.000**
+- Travel allowance On / Off (default On = Rp 540.000)
+- Ritase = KM × tarif (default Rp 2.566/km)
+- BPJS, PPh 21 (auto % atau nominal)
+- Bandingkan gaji rekening → saran PPh
+- Generate slip gaji (cetak / PDF browser)
+
+### Lainnya
+- Tab Lokasi, Rekap, Saran (WhatsApp)
+- Import/export CSV & cadangan JSON
+- Multi-perangkat: data lokal per HP (tidak saling timpa)
+
+---
+
+## Cara update
+
+1. Ganti `index.html` + `sw.js` (versi cache naik)
+2. Commit ke `main`
+3. Di HP: online → **Perbarui aplikasi**
+4. Disarankan unduh cadangan sebelum update besar
+
+---
 
 ## Data
-Semua catatan tersimpan di browser HP masing-masing, tidak dikirim ke mana pun. Unduh cadangan dari tab Gaji secara berkala. Jangan hapus data situs di pengaturan browser.
 
-## Catatan
-- Daftar lokasi dan jarak bawaan berasal dari data master PT. Weda Bay Nickel. Ubah di tab Lokasi.
-- Nama, NIP, dan angka gaji dikosongkan. Isi sendiri di tab Gaji.
-- Setelah mengganti file di repository, naikkan angka VERSI di `sw.js` (misalnya `ritase-v2`) supaya HP mengambil versi baru.
+Data tersimpan di **browser HP**. Hapus data situs / ganti HP tanpa cadangan = data hilang.
 
-## Pembaruan v18
-- Rumus BD "Lanjut ke dumping": total KM slot = jarak loading ke titik BD + jarak titik BD ke KM absolut dumping (POS12 27, Parkiran KR 38, Parkiran Tofu/Gantungan 68; bisa diubah di tab Lokasi).
-- Tab **Driver**: input data driver, gaji, aturan buku, isian periode, serta tombol Reset HK dan Reset rekapan (periode terpilih saja, ketuk dua kali).
-- Setelah mengganti file di GitHub, tutup dan buka lagi aplikasi (service worker v18) agar versi baru aktif.
-
-
-## Konfigurasi kontrak (penting)
-Nilai gaji terkunci (tarif, gaji pokok, insentif, onsite, BPJS, PPh) diisi di objek `CONTRACT.fixed` di dalam `index.html`. Ganti angka sesuai offering letter. Nama & NIP bisa diisi di tab Driver.
-
-
-## Pembaruan v30
-- Tombol **Buat Slip Gaji** di tab Gaji: menghasilkan halaman slip mirip format PT. Citramegah Karunia Bersama (bisa dicetak / simpan PDF dari browser).
-- Slip berisi gaji pokok, tunjangan (onsite, insentif, ritase, travel), potongan (BPJS, PPh 21), rekap ritase harian, ringkasan HK, dan area tanda tangan.
-
-
-## Pembaruan v31
-- Slip Gaji tampilan **modern**: header gradient, kartu rapi, tabel rekap, badge HK, area tanda tangan.
-- Tombol **Cetak / Simpan PDF** di halaman slip — hasil PDF rapi lewat print browser.
-- Contoh PDF modern tersedia di repo / artifacts.
-
-
-## Pembaruan v32
-- Slip Gaji tema **seragam CKB**: kuning & hitam, logo CKB.
-- Bank Account: **BRI** dan **Bank Mandiri** (pilih di tab Driver).
-- Tombol Cetak / Simpan PDF tetap tersedia.
+Bukan dokumen resmi perusahaan; hitungan gaji bersifat perkiraan.

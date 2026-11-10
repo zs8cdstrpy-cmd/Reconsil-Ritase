@@ -1,15 +1,15 @@
 {
-  "name": "Catatan Ritase",
+  "name": "Reconcil Ritase",
   "short_name": "Ritase",
-  "description": "Catatan ritase harian dump truck dengan jarak otomatis dan rekap.",
+  "description": "Catatan ritase dump truck, jarak patokan, rekap KM, dan perkiraan gaji. Offline PWA.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#EDF0F0",
-  "theme_color": "#0B6A73",
+  "background_color": "#0E1A1D",
+  "theme_color": "#FDD835",
   "lang": "id",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }
