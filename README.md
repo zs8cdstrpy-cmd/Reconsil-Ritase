@@ -2,22 +2,10 @@
 
 Aplikasi PWA offline untuk **catatan ritase harian dump truck**, rekap KM, dan **perkiraan gaji** (sesuai pola slip CKB / Weda Bay).
 
-**Versi aplikasi:** v63  
-**Service worker:** `ritase-v63`
+**Versi aplikasi:** v64  
+**Service worker:** `ritase-v64`
 
 Live: https://zs8cdstrpy-cmd.github.io/Reconsil-Ritase/
-
----
-
-## Isi paket
-
-| File | Keterangan |
-|------|------------|
-| `index.html` | Aplikasi lengkap |
-| `sw.js` | Service worker offline + update cache |
-| `manifest.json` | PWA (Add to Home Screen) |
-| `icon-192.png` / `icon-512.png` / `apple-touch-icon.png` | Ikon app |
-| `README.md` | Dokumentasi ini |
 
 ---
 
@@ -25,43 +13,24 @@ Live: https://zs8cdstrpy-cmd.github.io/Reconsil-Ritase/
 
 ### Catat ritase
 - 3 slot per hari, shift DS / NS / OFF
-- Loading & dumping + BD di jalan / lanjutan BD
-- **Jarak patokan terkunci:** loading biasa → POS12 **43 km** · FENI **55 km** · Parkiran KR **30 km** (TOS6 PP & Parkiran KR khusus)
-- Foto bukti timesheet (kamera / galeri), simpan IndexedDB
-- Autosave ke perangkat
+- Jarak patokan: POS12 **43 km** · FENI **55 km** · Parkiran KR **30 km** (TOS6 PP khusus)
+- Foto timesheet, autosave
 
 ### Periode buku
-- Buka **tanggal 29** · tutup **tanggal 28**
-- **Tutup buku otomatis** jika hari ini sudah lewat tanggal tutup
-- Tetap bisa **Buka kembali**
-- Cadangan JSON otomatis (opsional) saat tutup buku / update app
+- Buka **29** · tutup **28**
+- Tutup buku otomatis jika lewat tanggal tutup (bisa dibuka kembali)
 
 ### Gaji & slip
-- Gaji pokok, insentif, **Daily allowance default Rp 900.000**
-- Travel allowance On / Off (default On = Rp 540.000)
-- Ritase = KM × tarif (default Rp 2.566/km)
-- BPJS, PPh 21 (auto % atau nominal)
-- Bandingkan gaji rekening → saran PPh
-- Generate slip gaji (cetak / PDF browser)
+- Daily allowance default **Rp 900.000**
+- Travel allowance: **1 bulan (540.000)** · **Triwulan (1.620.000)** · **Tidak ada (0)** — default Tidak ada
+- Ritase = KM × tarif (default 2.566)
+- BPJS, PPh 21, bandingkan gaji rekening, slip gaji
 
 ### Lainnya
-- Tab Lokasi, Rekap, Saran (WhatsApp)
-- Import/export CSV & cadangan JSON
-- Multi-perangkat: data lokal per HP (tidak saling timpa)
+- Cadangan JSON, multi-device lokal, PWA offline
 
 ---
 
-## Cara update
+## Update
 
-1. Ganti `index.html` + `sw.js` (versi cache naik)
-2. Commit ke `main`
-3. Di HP: online → **Perbarui aplikasi**
-4. Disarankan unduh cadangan sebelum update besar
-
----
-
-## Data
-
-Data tersimpan di **browser HP**. Hapus data situs / ganti HP tanpa cadangan = data hilang.
-
-Bukan dokumen resmi perusahaan; hitungan gaji bersifat perkiraan.
+Upload `index.html` + `sw.js` (versi cache naik) → commit main → di HP ketuk **Perbarui aplikasi**.
